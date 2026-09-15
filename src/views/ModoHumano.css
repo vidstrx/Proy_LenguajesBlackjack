@@ -6,6 +6,12 @@
     background-color: black;
 }
 
+#div_tablero{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 #tablero{
     height:45vw;
     border-radius: 5vw;
@@ -18,6 +24,16 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+#ul_acciones{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    margin-left: 75%;
+    gap: 2vw;
 }
 
 #fichas_button{
@@ -39,8 +55,6 @@
     background-color: black;
     border: none;
     border-radius: 15%;
-    margin-left: 85%;
-    position: absolute;
 }
 
 #button_empezar:hover{

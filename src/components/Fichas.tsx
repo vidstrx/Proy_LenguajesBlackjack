@@ -8,7 +8,7 @@ export type FichaProps = {
 
 const Ficha = ({ valor, img, onPress }: FichaProps) =>{
     return(
-        <button id="fichas_button" onClick={() => onPress && onPress(true)}>
+        <button id="fichas_button" onClick={() => onPress && onPress(true)} >
             <img src={img} alt={`Ficha ${valor}`} style={{height: "5vw"}}/>
         </button>
     )
