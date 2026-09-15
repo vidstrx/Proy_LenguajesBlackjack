@@ -9,7 +9,7 @@ class Mazo{
     }
 
     create(): void {
-        const valores: (string | number)[] = ["as",2,3,4,5,6,7,8,9,10,"j","k","q"];
+        const valores: (string | number)[] = ["A",2,3,4,5,6,7,8,9,10,"J","K","Q"];
         const palos: (string)[] = ["heart", "spade", "diamond","club"];
         for (let i = 0; i < valores.length; i++) {
             for (let j = 0; j < palos.length; j++) {
