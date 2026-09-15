@@ -8,14 +8,51 @@ import greenChip from "../assets/green poker chip.png"
 import blackChip from "../assets/black poker chip.png"
 import purpleChip from "../assets/purple poker chip.png"
 import deal from "../assets/deal.png"
+import doubleDown from "../assets/double down.png"
+import stand from "../assets/stand.png"
 import { useState } from "react"
 
+function doubleDownAccion(empezado: boolean){
+    if(empezado){
+        return(
+            <li>
+                <button type="button" id="button_empezar">
+                    <img src={doubleDown} alt="Deal" style={{height: "4vw", filter: "invert(100%)"}}/>
+                </button>
+            </li>
+        )
+    }else{
+        return(<></>)
+    }
+}
+
+function standAccion(empezado: boolean){
+    if(empezado){
+        return(
+            <li>  
+                <button type="button" id="button_empezar">
+                    <img src={stand} alt="Deal" style={{height: "4vw"}}/>
+                </button>
+            </li>
+        )
+    }else{
+        return(<></>)
+    }
+}
+
 function empezarJuego(empezar: boolean){
+    const [empezado, setEmpezado] = useState(false);
     if(empezar){
         return(
-            <button type="button" id="button_empezar">
-                <img src={deal} alt="Deal" style={{height: "4vw", filter: "invert(100%)"}}/>
-            </button>
+            <ul id="ul_acciones">
+                <li>
+                    <button type="button" id="button_empezar" onClick={()=> setEmpezado(true)}>
+                        <img src={deal} alt="Deal" style={{height: "4vw", filter: "invert(100%)"}}/>
+                    </button>
+                </li>
+                {doubleDownAccion(empezado)}
+                {standAccion(empezado)}
+            </ul>
         )
     }else{
         return(<></>)
@@ -26,10 +63,13 @@ export default function ModoHumano(){
     const [empezar, setEmpezar] = useState(false);
     return(
         <div id = "div_principal">
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"crossorigin="anonymous"></link>
             <img src={titulo} alt="Título" id="titulo"/>
             <div>
-                <img src={tablero} alt="Tablero" id="tablero"/>
+                <div id="div_tablero">
+                    <img src={tablero} alt="Tablero" id="tablero"/>
+                    
+                    {empezarJuego(empezar)}
+                </div>
                 <div id="id_fichas_buttons">
                     <ul id="ul_fichas">
                         <li>
@@ -48,10 +88,8 @@ export default function ModoHumano(){
                             <Fichas valor={500} img={purpleChip} onPress={(empezar) => setEmpezar(empezar)}/>
                         </li>
                     </ul>
-                    {empezarJuego(empezar)}
                 </div>
             </div>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"crossorigin="anonymous"></script>
         </div>
     )
 }
