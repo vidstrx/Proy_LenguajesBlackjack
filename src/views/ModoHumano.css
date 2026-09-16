@@ -1,0 +1,73 @@
+#div_principal{
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    background-color: black;
+}
+
+#div_tablero{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#tablero{
+    height:45vw;
+    border-radius: 5vw;
+    border: 0.5vw solid white;
+    margin-bottom: 1vw;
+}
+
+#ul_fichas{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#ul_acciones{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    margin-left: 75%;
+    gap: 2vw;
+}
+
+#fichas_button{
+    background-color: black;
+    border-radius: 70%;
+    border: none;
+    position: relative;
+}
+
+#fichas_button:hover{
+    filter: brightness(1.8);
+}
+
+#fichas_button:active{
+    filter: brightness(0.5);
+}
+
+#button_empezar{
+    background-color: black;
+    border: none;
+    border-radius: 15%;
+}
+
+#button_empezar:hover{
+    filter: brightness(1.8);
+}
+
+#button_empezar:active{
+    filter: brightness(0.5);
+}
+
+#id_fichas_buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
