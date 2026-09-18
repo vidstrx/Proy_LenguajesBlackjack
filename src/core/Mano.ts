@@ -41,3 +41,5 @@ export class Mano {
     return this.calcularPuntaje() > 21;
   }
 }
+
+export default Mano;

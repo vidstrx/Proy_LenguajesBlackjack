@@ -43,12 +43,17 @@
     position: relative;
 }
 
-#fichas_button:hover{
+#fichas_button:not(:disabled):hover{
     filter: brightness(1.8);
 }
 
-#fichas_button:active{
+#fichas_button:not(:disabled):active{
     filter: brightness(0.5);
+}
+
+#fichas_button:disabled{
+    opacity: 0.5;
+    cursor: not_allowed;
 }
 
 #button_empezar{
@@ -94,4 +99,15 @@
     color: white;
     margin-top: 2%;
     height: 2vw;
+}
+
+#apuesta_mensaje{
+    justify-content: center;
+    position: absolute;
+    margin-left: 35%;
+    margin-top: 42%;
+    gap: 2vw;
+    background-color: white;
+    padding-left: 1vw;
+    padding-right: 1vw;
 }
