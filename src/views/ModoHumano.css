@@ -71,3 +71,27 @@
     justify-content: center;
     align-items: center;
 }
+
+#regresar_button{
+    position:absolute;
+    margin-right: 85%;
+    background-color: black;
+    color: white;
+    border: 1px solid rgb(189, 189, 72);
+    color: rgb(189, 189, 72);
+    margin-top: 2%;
+    height: 2vw;
+}
+
+#regresar_button:hover{
+    filter: brightness(2);
+}
+
+#billetera_p{
+    position:absolute;
+    margin-left: 85%;
+    background-color: black;
+    color: white;
+    margin-top: 2%;
+    height: 2vw;
+}
