@@ -12,6 +12,10 @@ import doubleDown from "../assets/double down.png"
 import stand from "../assets/stand.png"
 import { useState } from "react"
 
+interface ModoHumanoProps{
+    navegar: (view: "inicio" | "modoHumano" | "modoIA") => void;
+}
+
 function doubleDownAccion(empezado: boolean){
     if(empezado){
         return(
@@ -59,21 +63,32 @@ function empezarJuego(empezar: boolean){
     }
 }
 
-export default function ModoHumano(){
+/*function mostrarApuesta(apuesta: number){
+    return(
+
+    )
+}*/
+
+export default function ModoHumano({navegar}: ModoHumanoProps){
+    let billetera = 10000;
+    let apuesta = 0;
     const [empezar, setEmpezar] = useState(false);
+    const [billeteraActual, setBilleteraActual] = useState(billetera);
+    const [apuestaActual, setApuestaActual] = useState(apuesta);
     return(
         <div id = "div_principal">
             <img src={titulo} alt="Título" id="titulo"/>
             <div>
                 <div id="div_tablero">
                     <img src={tablero} alt="Tablero" id="tablero"/>
-                    
                     {empezarJuego(empezar)}
+                    {/*mostrarApuesta(apuestaActual)*/}
                 </div>
                 <div id="id_fichas_buttons">
+                    <button id="regresar_button" onClick={() => navegar("inicio")}>Regresar</button>
                     <ul id="ul_fichas">
                         <li>
-                            <Fichas valor={1} img={blueChip} onPress={(empezar) => setEmpezar(empezar)}/>
+                            <Fichas valor={1} img={blueChip} onPress={(empezar) => setEmpezar(empezar)} />
                         </li>
                         <li>
                             <Fichas valor={5} img={redChip} onPress={(empezar) => setEmpezar(empezar)}/>
@@ -88,6 +103,7 @@ export default function ModoHumano(){
                             <Fichas valor={500} img={purpleChip} onPress={(empezar) => setEmpezar(empezar)}/>
                         </li>
                     </ul>
+                    <p id="billetera_p">Billetera: {billetera}</p>
                 </div>
             </div>
         </div>
