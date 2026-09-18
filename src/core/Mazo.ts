@@ -2,7 +2,8 @@ import Carta from "./Carta";
 
 class Mazo{
 
-    mazo: Carta[] = [];
+    private mazo: Carta[] = [];
+    private mazoDict: Record<(string | number), number> = {}; // para contar las cartas en el mazo
     constructor(){
         this.create();
         this.shuffle();
@@ -14,6 +15,7 @@ class Mazo{
         for (let i = 0; i < valores.length; i++) {
             for (let j = 0; j < palos.length; j++) {
                 this.mazo.push(new Carta(valores[i],palos[j]));
+                this.mazoDict[valores[i]] = (j+1); // agregando la cantidad de cartas (A: 4, 2: 4, ...)
             }
         }
     }
@@ -27,6 +29,15 @@ class Mazo{
 
     getMazo(): Carta[] {
         return this.mazo;
+    }
+
+    // esto es util para la estrategia de probabilidad
+    actualizarMazoDict(valor:(string | number)) {
+        this.mazoDict[valor] -= 1;
+    }
+
+    getMazoDict(): Record<(string | number), number> {
+        return this.mazoDict;
     }
 }
 
