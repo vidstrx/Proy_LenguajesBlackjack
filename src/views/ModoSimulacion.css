@@ -1,0 +1,60 @@
+.div_principal{
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    background-color: black;
+}
+
+.div_tablero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tablero{
+    height:45vw;
+    border-radius: 5vw;
+    border: 0.5vw solid white;
+    margin-bottom: 1vw;
+}
+
+.div_cartas {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.div_dealer {
+    margin-top: 25%;
+}
+
+.div_jugadorIA {
+    margin-top: 35%;
+}
+
+.div_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 2%;
+}
+
+.buttons {
+    margin: 5%;
+    background-color: black;
+    border: 2px solid rgb(189, 189, 72);
+    color: rgb(189, 189, 72);
+    font-weight: bold;
+    font-size: medium;
+    padding: 2%;
+}
+
+.buttons:hover {
+    filter: brightness(2);
+}

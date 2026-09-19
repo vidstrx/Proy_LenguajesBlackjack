@@ -5,6 +5,7 @@ import Mazo from "./core/Mazo"
 import ModoHumano from "./views/ModoHumano"
 import Inicio from "./views/Inicio"
 import { useState } from "react";
+import ModoSimulacion from "./views/ModoSimulacion";
 
 function App() {
   //const [count, setCount] = useState(0)
@@ -16,7 +17,7 @@ function App() {
     <div>
       {actual == "inicio" && <Inicio navegar={setActual}/>}
       {actual == "modoHumano" && <ModoHumano navegar={setActual}/>}
-      {/* {actual == "modoIA" && <ModoIA onNavigate={setActual}/>} */}
+      {actual == "modoIA" && <ModoSimulacion navegar={setActual} mazo={mazo}/>}
     </div>
   )
 }

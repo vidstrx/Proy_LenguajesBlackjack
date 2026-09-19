@@ -14,7 +14,7 @@ export default function Inicio({navegar}: inicioProps){
             <img src={titulo} alt="Título" id="titulo"/>
             <ul id = "ul_menu">
                 <li>
-                    <button className="button">Modo IA</button>
+                    <button className="button" onClick={() => navegar("modoIA")}>Modo IA</button>
                 </li>
                 <li>
                     <button className="button" onClick={() => navegar("modoHumano")}>Jugar</button>
