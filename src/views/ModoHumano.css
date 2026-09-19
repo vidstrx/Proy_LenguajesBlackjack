@@ -128,3 +128,24 @@
     flex-direction: row;
     padding-top: 10%;
 }
+
+#li_cartas{
+    width: 100%
+}
+
+#li_cartas_doubled{
+    width: 100%;
+    transform: rotate(90deg);
+    display: inline-block;
+}
+
+#mensaje_final{
+    position: absolute;
+    margin-top: 20%;
+    color: white;
+    font-size: 200%;
+    background-color: red;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    justify-content: center;
+}

@@ -11,7 +11,7 @@ export class Mano {
     this.cartas = [];
   }
 
-  public getMano(): Carta[]{
+  public getCartas(): Carta[]{
     return this.cartas;
   }
 

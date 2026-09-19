@@ -24,7 +24,6 @@ function getPaloCarta(palo:string) {
     }
     return {simbolo: '?', color:"negro"}
 }
-
 /**
  * Dibuja solo una carta de frente o de atras 
  * @param carta - el objeto carta que contiene (valor y palo) 
