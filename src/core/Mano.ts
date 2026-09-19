@@ -11,6 +11,10 @@ export class Mano {
     this.cartas = [];
   }
 
+  public getMano(): Carta[]{
+    return this.cartas;
+  }
+
   public calcularPuntaje(): number {
     let total = 0;
     let ases = 0;

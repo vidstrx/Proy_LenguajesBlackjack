@@ -9,7 +9,7 @@
 #div_tablero{
     display: flex;
     flex-direction: row;
-    align-items: center;
+    justify-content: center;
 }
 
 #tablero{
@@ -32,7 +32,7 @@
     flex-direction: column;
     justify-content: center;
     position: absolute;
-    margin-left: 75%;
+    margin-left: 80%;
     gap: 2vw;
 }
 
@@ -104,10 +104,27 @@
 #apuesta_mensaje{
     justify-content: center;
     position: absolute;
-    margin-left: 35%;
     margin-top: 42%;
     gap: 2vw;
     background-color: white;
     padding-left: 1vw;
     padding-right: 1vw;
+}
+
+#ul_cartas_jugador{
+    list-style: none;
+    position: absolute;
+    margin-top: 30%;
+    gap: 0.5vw;
+    display: flex;
+    flex-direction: row;
+}
+
+#ul_cartas_dealer{
+    list-style: none;
+    position: absolute;
+    gap: 0.5vw;
+    display: flex;
+    flex-direction: row;
+    padding-top: 10%;
 }
