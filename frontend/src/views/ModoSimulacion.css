@@ -1,0 +1,19 @@
+.simulacion-page, .estadisticas-page { min-height: 100vh; padding: clamp(1rem, 4vw, 3rem); background: radial-gradient(circle at 85% 0, #12382d, #050a08 45%); }
+.simulacion-page > *, .estadisticas-page > * { width: min(1100px, 100%); margin-left: auto; margin-right: auto; }
+
+.panel-simulacion { display: flex; justify-content: space-between; align-items: end; gap: 1rem; padding: 1.4rem; border: 1px solid var(--borde); border-radius: 1rem; background: var(--panel); }
+.label { display: block; margin-bottom: .7rem; color: var(--texto-suave); font-size: .85rem; }
+.cantidades { display: flex; gap: .5rem; }
+.cantidades button { min-width: 72px; padding: .65rem; color: #fff; background: #071a14; border: 1px solid rgba(255,255,255,.13); border-radius: .6rem; }
+.cantidades button.seleccionado { color: #151004; border-color: var(--oro); background: var(--oro-claro); font-weight: 850; }
+.resumen-ganador { margin-top: 1.25rem; margin-bottom: 1rem; padding: 1rem 1.25rem; display: flex; justify-content: space-between; gap: 1rem; border: 1px solid var(--borde); border-radius: .8rem; background: rgba(20, 83, 61, .5); }
+.resumen-ganador span, .nota-simulacion { color: var(--texto-suave); }
+.resumen-ganador strong { color: var(--oro-claro); }
+.nota-simulacion { margin-top: 1rem; font-size: .88rem; }
+
+@media (max-width: 650px) {
+  .panel-simulacion { align-items: stretch; flex-direction: column; }
+  .cantidades { flex-wrap: wrap; }
+  .resumen-ganador { flex-direction: column; }
+}
+

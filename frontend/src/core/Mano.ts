@@ -1,7 +1,11 @@
-import Carta from './Carta';
+import Carta from "./Carta";
 
 export class Mano {
-  public cartas: Carta[] = [];
+  private cartas: Carta[];
+
+  constructor(cartas: Carta[] = []) {
+    this.cartas = [...cartas];
+  }
 
   public agregarCarta(carta: Carta): void {
     this.cartas.push(carta);
@@ -11,7 +15,7 @@ export class Mano {
     this.cartas = [];
   }
 
-  public getCartas(): Carta[]{
+  public getCartas(): readonly Carta[] {
     return this.cartas;
   }
 
@@ -28,7 +32,7 @@ export class Mano {
       } else if (v === 'J' || v === 'Q' || v === 'K') {
         total += 10;
       } else {
-        total += parseInt(String(v), 10);
+        total += v;
       }
     }
 
@@ -43,6 +47,14 @@ export class Mano {
 
   public estaSePaso(): boolean {
     return this.calcularPuntaje() > 21;
+  }
+
+  public esBlackjack(): boolean {
+    return this.cartas.length === 2 && this.calcularPuntaje() === 21;
+  }
+
+  public calcularPuntajeCon(carta: Carta): number {
+    return new Mano([...this.cartas, carta]).calcularPuntaje();
   }
 }
 

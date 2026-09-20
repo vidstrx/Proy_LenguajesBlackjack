@@ -1,7 +1,7 @@
 import type { Mano } from "./Mano";
 
 class Jugador {
-    mano: Mano;
+    protected mano: Mano;
 
     constructor(mano: Mano) {
         this.mano = mano;

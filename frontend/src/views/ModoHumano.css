@@ -1,0 +1,68 @@
+.mesa-page { min-height: 100vh; padding: 1rem; background: radial-gradient(circle at 50% 45%, #116047 0, #073629 52%, #03110d 100%); }
+
+.barra-superior {
+  width: min(1100px, 100%);
+  margin: 0 auto 1rem;
+  padding: .8rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--borde);
+  border-radius: 1rem;
+  background: rgba(0,0,0,.38);
+}
+
+.barra-superior > div { text-align: center; }
+.barra-superior span, .barra-superior label { display: block; color: var(--texto-suave); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
+.barra-superior strong { color: var(--oro-claro); font-size: 1.3rem; }
+.barra-superior label { justify-self: end; text-align: left; }
+.barra-superior select { display: block; margin-top: .3rem; padding: .45rem .65rem; color: #fff; background: #071d16; border: 1px solid var(--borde); border-radius: .55rem; }
+
+.mesa {
+  width: min(1100px, 100%);
+  min-height: 640px;
+  margin: auto;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  border: clamp(7px, 1vw, 14px) solid #4a2c1c;
+  outline: 2px solid #8c6746;
+  border-radius: clamp(2rem, 7vw, 6rem);
+  background: radial-gradient(circle, rgba(23, 112, 80, .9), rgba(5, 57, 41, .96));
+  box-shadow: inset 0 0 65px rgba(0,0,0,.5), 0 25px 80px rgba(0,0,0,.45);
+}
+
+.zona-mano { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 210px; }
+.zona-mano--jugador { flex-direction: column-reverse; }
+.cartas { min-height: 155px; display: flex; justify-content: center; align-items: center; }
+.cartas .carta-contenedor + .carta-contenedor { margin-left: -24px; }
+.etiqueta-mano { display: flex; gap: .7rem; align-items: center; margin: .55rem 0; color: rgba(255,255,255,.72); font-size: .82rem; letter-spacing: .11em; }
+.etiqueta-mano strong { display: grid; place-items: center; width: 2.2rem; height: 2.2rem; color: #151004; background: var(--oro-claro); border-radius: 50%; font-size: 1rem; }
+
+.estado { justify-self: center; display: flex; flex-direction: column; align-items: center; gap: .25rem; padding: .8rem 1.4rem; border-radius: 999px; color: #fff; background: rgba(0,0,0,.38); border: 1px solid rgba(255,255,255,.16); text-align: center; }
+.estado span { font-weight: 800; }
+.estado small { color: rgba(255,255,255,.7); }
+.estado--victoria { background: #0b6e43; }
+.estado--derrota { background: #8d2429; }
+.estado--empate { background: #5a526f; }
+
+.controles-juego { width: min(1000px, 100%); margin: 1rem auto 0; }
+.selector-apuesta > p { margin: 0 0 .55rem; text-align: center; color: var(--texto-suave); }
+.fichas { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; }
+.ficha { position: relative; width: 78px; height: 78px; padding: 0; border: 0; border-radius: 50%; background: transparent; transition: transform .18s ease; }
+.ficha:hover:not(:disabled) { transform: translateY(-6px) rotate(4deg); }
+.ficha img { width: 100%; height: 100%; object-fit: contain; }
+.ficha span { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-weight: 900; text-shadow: 0 1px 4px #000; }
+.acciones { display: flex; flex-wrap: wrap; justify-content: center; gap: .7rem; }
+.alerta { width: fit-content; margin: .7rem auto; padding: .6rem 1rem; color: #ffd3d3; background: #691e25; border-radius: .6rem; }
+.decisiones { width: min(720px, 100%); margin: 1rem auto 0; padding: .8rem 1rem; color: var(--texto-suave); background: rgba(0,0,0,.3); border: 1px solid var(--borde); border-radius: .8rem; }
+
+@media (max-width: 650px) {
+  .barra-superior { grid-template-columns: 1fr 1fr; }
+  .barra-superior > div { justify-self: end; }
+  .barra-superior label { grid-column: 1 / -1; justify-self: stretch; }
+  .mesa { min-height: 570px; padding: .8rem; }
+  .ficha { width: 62px; height: 62px; }
+}
+

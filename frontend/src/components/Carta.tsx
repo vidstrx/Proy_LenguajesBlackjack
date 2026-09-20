@@ -1,6 +1,6 @@
-import Carta from "../core/Carta"
-import "./Carta.css"
-import carta_atras from "../assets/carta_atras.png"
+import type Carta from "../core/Carta";
+import "./Carta.css";
+import carta_atras from "../assets/carta_atras.png";
 
 interface cartaProps  {
     carta: Carta,
@@ -35,7 +35,7 @@ function CartaComp({carta, mostrar = true}:cartaProps) {
     // muestra el contenido de la carta
     if(mostrar) {
         return (
-            <div className={`carta-contenedor ${color}`}>
+            <div className={`carta-contenedor carta-entrada ${color}`}>
                 <div className="esquina top-left">
                     <span className="valor">{carta.valor}</span>
                 </div>
@@ -51,8 +51,8 @@ function CartaComp({carta, mostrar = true}:cartaProps) {
     
     //muestra la parte de atras de la carta
     return (
-        <div className="carta-contenedor">
-            <img src={carta_atras} alt="Carta por atras" />
+        <div className="carta-contenedor carta-entrada carta-reverso">
+            <img src={carta_atras} alt="Carta oculta" />
         </div>
     );
 }
