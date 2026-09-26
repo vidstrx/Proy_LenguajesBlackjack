@@ -1,3 +1,4 @@
+import { registrarPartida } from "../components/registrarPartida";
 import "./ModoHumano.css"
 import Fichas from "../components/Fichas.tsx"
 import tablero from "../assets/tablero.png"
@@ -25,7 +26,7 @@ interface ModoHumanoProps {
     navegar: (view: "inicio" | "modoHumano" | "modoIA") => void;
 }
 
-function doubleDownAccion(empezado: boolean, doubleDownEvaluacion: ()=>void) {
+function doubleDownAccion(empezado: boolean, doubleDownEvaluacion: () => void) {
     if (empezado) {
         return (
             <li>
@@ -39,7 +40,7 @@ function doubleDownAccion(empezado: boolean, doubleDownEvaluacion: ()=>void) {
     }
 }
 
-function standAccion(empezado: boolean, standEvaluacion: ()=>void) {
+function standAccion(empezado: boolean, standEvaluacion: () => void) {
     if (empezado) {
         return (
             <li>
@@ -53,7 +54,7 @@ function standAccion(empezado: boolean, standEvaluacion: ()=>void) {
     }
 }
 
-function empezarJuego(empezar: boolean, empezado: boolean, onPedirCartas: () => void, doubleDown: boolean, standEvaluacion: ()=>void, doubleDownEvaluacion: ()=>void) {
+function empezarJuego(empezar: boolean, empezado: boolean, onPedirCartas: () => void, doubleDown: boolean, standEvaluacion: () => void, doubleDownEvaluacion: () => void) {
     if (!empezar) {
         return (<></>)
     }
@@ -88,7 +89,7 @@ function cartasJugador(jugador: Jugador, empezado: boolean, doubleDown: boolean)
         return (
             <ul id="ul_cartas_jugador">
                 {jugador.getMano().getCartas().map((item, index) => (
-                    <li id={(doubleDown && index == jugador.getMano().getCartas().length - 1)? "li_cartas_doubled" : "li_cartas"} key={index}>
+                    <li id={(doubleDown && index == jugador.getMano().getCartas().length - 1) ? "li_cartas_doubled" : "li_cartas"} key={index}>
                         <Carta carta={item} />
                     </li>
                 ))}
@@ -101,22 +102,22 @@ function cartasJugador(jugador: Jugador, empezado: boolean, doubleDown: boolean)
 
 function cartasDealer(dealer: IA, empezado: boolean, mostrar: boolean) {
     if (empezado) {
-        if(!mostrar){
+        if (!mostrar) {
             return (
                 <ul id="ul_cartas_dealer">
                     {dealer.getMano().getCartas().map((item, index) => (
                         <li id="li_cartas" key={index}>
-                            <Carta carta={item} mostrar={index == 1? true : false}/>
+                            <Carta carta={item} mostrar={index == 1 ? true : false} />
                         </li>
                     ))}
                 </ul>
             )
-        }else{
+        } else {
             return (
                 <ul id="ul_cartas_dealer">
                     {dealer.getMano().getCartas().map((item, index) => (
                         <li id="li_cartas" key={index}>
-                            <Carta carta={item}/>
+                            <Carta carta={item} />
                         </li>
                     ))}
                 </ul>
@@ -127,9 +128,9 @@ function cartasDealer(dealer: IA, empezado: boolean, mostrar: boolean) {
     }
 }
 
-function mostrarMensajeFinal(mensaje: string, limpiarPartida: ()=>void){
-    if(mensaje != ""){
-        return(
+function mostrarMensajeFinal(mensaje: string, limpiarPartida: () => void) {
+    if (mensaje != "") {
+        return (
             <div id="mensaje_final">
                 <p>{mensaje}</p>
                 <button id="regresar_button" onClick={limpiarPartida}>Continuar</button>
@@ -178,11 +179,16 @@ export default function ModoHumano({ navegar }: ModoHumanoProps) {
                 const dealerTieneA = nuevaManoD.getCartas().some(c => c.valor === "A");
                 const dealerTieneDiez = nuevaManoD.getCartas().some(c => c.valor === "Q" || c.valor === "K" || c.valor === "J" || c.valor === "10");
 
+                const pJ = nuevaMano.calcularPuntaje();
+                const pD = nuevaManoD.calcularPuntaje();
+
                 if (dealerTieneA && dealerTieneDiez) {
                     setMensajeFinal("EMPATE JACKBLACK");
+                    registrarPartida('humano', 'empate', pJ, pD, apuestaActual);
                 } else {
                     setMensajeFinal("JACKBLACK!");
                     setBilleteraActual(billeteraActual + apuestaActual);
+                    registrarPartida('humano', 'blackjack', pJ, pD, apuestaActual);
                 }
             }
         }
@@ -194,42 +200,47 @@ export default function ModoHumano({ navegar }: ModoHumanoProps) {
         setDoubleDown(false);
 
         let puntaje = jugador.getMano().calcularPuntaje();
-        if(puntaje > 21){
+        if (puntaje > 21) {
             setMensajeFinal("Busted");
             setEmpezar(false);
             setBilleteraActual(billeteraActual - apuestaActual);
+            registrarPartida('humano', 'derrota', puntaje, dealer.getMano().calcularPuntaje(), apuestaActual);
         }
     };
 
-    const standEvaluacion = ()=>{
-        while(dealer.estrategiaFija()){
+    const standEvaluacion = () => {
+        while (dealer.estrategiaFija()) {
             dealer.getMano().agregarCarta(mazo.getMazo()[indice_mazo++]);
             setDealer(new IA(dealer.getMano()));
         }
 
         setEmpezar(false);
         let puntajeIA = dealer.getMano().calcularPuntaje();
-        if(puntajeIA > 21){
+        if (puntajeIA > 21) {
             setMensajeFinal("DEALER BUSTED");
             setBilleteraActual(billeteraActual + apuestaActual);
+            registrarPartida('humano', 'victoria', jugador.getMano().calcularPuntaje(), puntajeIA, apuestaActual);
             return;
         }
 
         let puntajeJugador = jugador.getMano().calcularPuntaje();
-        
 
-        if((21 - puntajeJugador) > (21 - puntajeIA)){
+
+        if ((21 - puntajeJugador) > (21 - puntajeIA)) {
             setMensajeFinal("DEALER GANA");
             setBilleteraActual(billeteraActual - apuestaActual);
-        }else if ((21 - puntajeIA) > (21 - puntajeJugador)){
+            registrarPartida('humano', 'derrota', puntajeJugador, puntajeIA, apuestaActual);
+        } else if ((21 - puntajeIA) > (21 - puntajeJugador)) {
             setMensajeFinal("TÚ GANAS");
             setBilleteraActual(billeteraActual + apuestaActual);
-        }else {
+            registrarPartida('humano', 'victoria', puntajeJugador, puntajeIA, apuestaActual);
+        } else {
             setMensajeFinal("EMPATE");
+            registrarPartida('humano', 'empate', puntajeJugador, puntajeIA, apuestaActual);
         }
     }
 
-    const doubleDownEvaluacion = ()=>{
+    const doubleDownEvaluacion = () => {
         const nuevaApuesta = apuestaActual * 2;
         setApuestaActual(nuevaApuesta);
         setDoubleDownTrue(true);
@@ -237,36 +248,41 @@ export default function ModoHumano({ navegar }: ModoHumanoProps) {
         setJugador(new Jugador(jugador.getMano()));
 
         let puntaje = jugador.getMano().calcularPuntaje();
-        if(puntaje > 21){
+        if (puntaje > 21) {
             setMensajeFinal("Busted");
             setEmpezar(false);
             setBilleteraActual(billeteraActual - nuevaApuesta);
+            registrarPartida('humano', 'derrota', puntaje, dealer.getMano().calcularPuntaje(), nuevaApuesta);
             return;
         }
 
-         while(dealer.estrategiaFija()){
+        while (dealer.estrategiaFija()) {
             dealer.getMano().agregarCarta(mazo.getMazo()[indice_mazo++]);
             setDealer(new IA(dealer.getMano()));
         }
 
         setEmpezar(false);
         let puntajeIA = dealer.getMano().calcularPuntaje();
-        if(puntajeIA > 21){
+        if (puntajeIA > 21) {
             setMensajeFinal("DEALER BUSTED");
             setBilleteraActual(billeteraActual + nuevaApuesta);
+            registrarPartida('humano', 'victoria', puntaje, puntajeIA, nuevaApuesta);
             return;
         }
 
         let puntajeJugador = jugador.getMano().calcularPuntaje();
-        
-        if((21 - puntajeJugador) > (21 - puntajeIA)){
+
+        if ((21 - puntajeJugador) > (21 - puntajeIA)) {
             setMensajeFinal("DEALER GANA");
             setBilleteraActual(billeteraActual - nuevaApuesta);
-        }else if ((21 - puntajeIA) > (21 - puntajeJugador)){
+            registrarPartida('humano', 'derrota', puntajeJugador, puntajeIA, nuevaApuesta);
+        } else if ((21 - puntajeIA) > (21 - puntajeJugador)) {
             setMensajeFinal("TÚ GANAS");
             setBilleteraActual(billeteraActual + nuevaApuesta);
-        }else {
+            registrarPartida('humano', 'victoria', puntajeJugador, puntajeIA, nuevaApuesta);
+        } else {
             setMensajeFinal("EMPATE");
+            registrarPartida('humano', 'empate', puntajeJugador, puntajeIA, nuevaApuesta);
         }
     }
 
