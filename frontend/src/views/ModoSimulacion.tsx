@@ -34,7 +34,7 @@ export default function ModoSimulacion({ navegar }: Props) {
         <button className="boton boton--pequeno" onClick={() => navegar("inicio")}>← Menú</button>
         <div>
           <p className="eyebrow">Laboratorio de IA</p>
-          <h1>Comparar estrategias</h1>
+          <h1 style={{paddingTop: '2%', paddingBottom: '3%'}} >Comparar estrategias</h1>
           <p>Cada estrategia juega la misma cantidad de partidas contra un dealer con regla fija.</p>
         </div>
       </header>

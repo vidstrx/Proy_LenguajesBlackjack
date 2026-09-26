@@ -1,7 +1,7 @@
 .mesa-page { min-height: 100vh; padding: 1rem; background: radial-gradient(circle at 50% 45%, #116047 0, #073629 52%, #03110d 100%); }
 
 .barra-superior {
-  width: min(1100px, 100%);
+  width: min(1000px, 100%);
   margin: 0 auto 1rem;
   padding: .8rem 1rem;
   display: grid;
@@ -20,7 +20,7 @@
 .barra-superior select { display: block; margin-top: .3rem; padding: .45rem .65rem; color: #fff; background: #071d16; border: 1px solid var(--borde); border-radius: .55rem; }
 
 .mesa {
-  width: min(1100px, 100%);
+  width: min(1000px, 100%);
   min-height: 640px;
   margin: auto;
   padding: 1.5rem;

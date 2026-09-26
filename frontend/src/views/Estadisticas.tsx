@@ -25,7 +25,7 @@ export default function Estadisticas({ navegar }: Props) {
         <button className="boton boton--pequeno" onClick={() => navegar("inicio")}>← Menú</button>
         <div>
           <p className="eyebrow">Sesión actual</p>
-          <h1>Historial de partidas</h1>
+          <h1 style={{paddingTop: '2%', paddingBottom: '3%'}}>Historial de partidas</h1>
           <p>Resultados y decisiones tomadas por el dealer.</p>
         </div>
       </header>
@@ -68,4 +68,3 @@ export default function Estadisticas({ navegar }: Props) {
     </section>
   );
 }
-
