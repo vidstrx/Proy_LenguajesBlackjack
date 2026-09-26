@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import Carta from "./Carta";
 import Mano from "./Mano";
 import Mazo from "./Mazo";
-import JuegoBlackjack from "./JuegoBlackjack";
+import JuegoBlackjack from "./JuegoBlackJack";
 import { Simulador } from "./Simulador";
 import { EstrategiaFija } from "./strategies/EstrategiaFija";
 import { EstrategiaProbabilidad } from "./strategies/EstrategiaProbabilidad";

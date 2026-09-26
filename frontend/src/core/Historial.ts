@@ -1,4 +1,4 @@
-import type { ResultadoPartida } from "./JuegoBlackjack";
+import type { ResultadoPartida } from "./JuegoBlackJack";
 import type { TipoEstrategia } from "./strategies/EstrategiaIA";
 
 export interface RegistroPartida {

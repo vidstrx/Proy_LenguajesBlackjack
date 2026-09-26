@@ -1,7 +1,7 @@
 import IA from "./IA";
 import Mano from "./Mano";
 import Mazo from "./Mazo";
-import type { ResultadoPartida } from "./JuegoBlackjack";
+import type { ResultadoPartida } from "./JuegoBlackJack";
 import type { TipoEstrategia } from "./strategies/EstrategiaIA";
 
 export interface ResultadoSimulacion {

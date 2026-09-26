@@ -14,6 +14,9 @@ const normalizeGame = (body) => ({
 });
 
 const createGame = async (req, res, next) => {
+  if (!req.body || typeof req.body.id !== 'string' || req.body.id.trim() === '') {
+    return res.status(400).json({ success: false, message: 'El campo id de la partida es requerido' });
+  }
   try {
     const game = await Game.findOneAndUpdate(
       { clientId: req.body.id },

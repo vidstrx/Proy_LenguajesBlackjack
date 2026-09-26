@@ -1,8 +1,8 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import type { Vista } from "../App";
 import CartaComp from "../components/Carta";
 import Ficha from "../components/Fichas";
-import JuegoBlackjack, { type ResumenPartida } from "../core/JuegoBlackjack";
+import JuegoBlackjack, { type ResumenPartida } from "../core/JuegoBlackJack";
 import { crearIdPartida, Historial, type RegistroPartida } from "../core/Historial";
 import type { TipoEstrategia } from "../core/strategies/EstrategiaIA";
 import { guardarPartidaRemota } from "../services/api";
@@ -26,9 +26,9 @@ const fichas = [
 ];
 
 export default function ModoHumano({ navegar }: Props) {
-  const juego = useRef(new JuegoBlackjack());
-  const historial = useRef(new Historial());
-  const [resumen, setResumen] = useState<ResumenPartida>(juego.current.getResumen());
+  const [juego] = useState(() => new JuegoBlackjack());
+  const [historial] = useState(() => new Historial());
+  const [resumen, setResumen] = useState<ResumenPartida>(() => juego.getResumen());
   const [estrategia, setEstrategia] = useState<TipoEstrategia>("fija");
   const [error, setError] = useState("");
 
@@ -52,7 +52,7 @@ export default function ModoHumano({ navegar }: Props) {
           billetera: siguiente.billetera,
           decisionesIA: [...siguiente.decisionesIA],
         };
-        historial.current.agregar(registro);
+        historial.agregar(registro);
         void guardarPartidaRemota(registro);
       }
     } catch (e) {
@@ -123,7 +123,7 @@ export default function ModoHumano({ navegar }: Props) {
                   key={ficha.valor}
                   {...ficha}
                   deshabilitado={ficha.valor > resumen.billetera}
-                  onSelect={(valor) => aplicar(() => juego.current.iniciarPartida(valor, estrategia))}
+                  onSelect={(valor) => aplicar(() => juego.iniciarPartida(valor, estrategia))}
                 />
               ))}
             </div>
@@ -132,15 +132,15 @@ export default function ModoHumano({ navegar }: Props) {
 
         {activa && (
           <div className="acciones">
-            <button className="boton boton--principal" onClick={() => aplicar(() => juego.current.pedirCarta())}>Pedir</button>
-            <button className="boton" onClick={() => aplicar(() => juego.current.plantarse())}>Plantarse</button>
-            <button className="boton" disabled={!resumen.puedeDoblar} onClick={() => aplicar(() => juego.current.doblar())}>Doblar</button>
+            <button className="boton boton--principal" onClick={() => aplicar(() => juego.pedirCarta())}>Pedir</button>
+            <button className="boton" onClick={() => aplicar(() => juego.plantarse())}>Plantarse</button>
+            <button className="boton" disabled={!resumen.puedeDoblar} onClick={() => aplicar(() => juego.doblar())}>Doblar</button>
           </div>
         )}
 
         {terminada && (
           <div className="acciones acciones--fin">
-            <button className="boton boton--principal" onClick={() => aplicar(() => juego.current.prepararSiguiente())}>Nueva partida</button>
+            <button className="boton boton--principal" onClick={() => aplicar(() => juego.prepararSiguiente())}>Nueva partida</button>
             <button className="boton" onClick={() => navegar("estadisticas")}>Ver historial</button>
           </div>
         )}
